@@ -1,9 +1,23 @@
 class User < ApplicationRecord
-  enum role: [:user, :vip, :admin]
-  after_initialize :set_default_role, :if => :new_record?
+  has_many :user_roles
+  has_many :roles, through: :user_roles
 
-  def set_default_role
-    self.role ||= :user
+  def admin?
+    roles.each do |role|
+      return true if role.name == 'ADMIN'
+    end
+  end
+
+  def househunter?
+    roles.each do |role|
+      return true if role.name == 'HOUSE-HUNTER'
+    end
+  end
+
+  def realtor?
+    roles.each do |role|
+      return true if role.name == 'REALTOR'
+    end
   end
 
   # Include default devise modules. Others available are:
