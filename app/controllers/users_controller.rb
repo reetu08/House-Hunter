@@ -12,13 +12,21 @@ class UsersController < ApplicationController
     authorize @user
   end
 
-  def update
-    @user = User.find(params[:id])
+  def new
+    @user = User.new
     authorize @user
-    if @user.update_attributes(secure_params)
-      redirect_to users_path, :notice => "User updated."
+  end
+
+  def manual_create
+    @user = User.new secure_params
+    authorize @user
+    @token = Devise.friendly_token(10)
+
+    if @user.save
+      UserMailer.with(user: @user, token: @token).welcome_email.deliver_later
+      redirect_to '/users', :note => "User created and email sent"
     else
-      redirect_to users_path, :alert => "Unable to update user."
+      redirect_to '/users', :alert => "Unable to create user."
     end
   end
 

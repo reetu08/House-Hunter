@@ -23,4 +23,12 @@ class UserPolicy < ApplicationPolicy
     @current_user.admin?
   end
 
+  def new?
+    @current_user.admin?
+  end
+
+  def manual_create?
+    @current_user.admin?
+  end
+
 end
