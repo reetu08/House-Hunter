@@ -31,6 +31,21 @@ Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.
 Getting Started
 ---------------
 
+Once you have the necessary Ruby and Rails dependencies (see above), you will need to install the required Gems.
+
+To do this, simply run
+```
+bundle install --without production
+```
+
+Once these have been installed, you will need to create and seed your development database.
+```
+rake db:migrate
+rake db:seed
+```
+
+This will create your database in `db/development.sqlite3` and create the Admin user.
+
 Documentation and Support
 -------------------------
 
