@@ -1,0 +1,17 @@
+<div class="form-group">
+  <%= form.label :name %>
+  <%= form.text_field :name, :autofocus => true, class: 'form-control' %>
+</div>
+<div class="form-group">
+  <%= form.label :email %>
+  <%= form.email_field :email, class: 'form-control' %>
+</div>
+<div class="form-group">
+  <%= form.label :roles %>
+  <div>
+    <% Role.all.each do |role| %>
+      <%= form.label role.name %>
+      <%= form.check_box(:roles, {:multiple => :true, :checked => @user.roles.map { |role| role.id }.include?(role.id) }, role.id, false) %>
+    <% end %>
+  </div>
+</div>

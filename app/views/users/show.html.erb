@@ -1,6 +1,7 @@
 <h3>User</h3>
 <p>Name: <%= @user.name if @user.name %></p>
 <p>Email: <%= @user.email if @user.email %></p>
-<% if @user.admin? %>
-  <p>Roles: <%= @user.roles.map{ |role| role.name }.join(',') %></p>
+<% if current_user.admin? %>
+  <p>Roles: <%= @user.map_role_names.join(',') %></p>
 <% end %>
+<%= link_to('Edit', edit_user_path(@user), :class => 'button-xs') %>

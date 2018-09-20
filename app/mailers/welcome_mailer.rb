@@ -1,4 +1,5 @@
-class UserMailer < ApplicationMailer
+class WelcomeMailer < ApplicationMailer
+  include Devise::Controllers::UrlHelpers
 
   def welcome_email
     @user = params[:user]

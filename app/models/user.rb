@@ -1,23 +1,22 @@
 class User < ApplicationRecord
   has_many :user_roles
-  has_many :roles, through: :user_roles
+  has_many :roles, through: :user_roles, dependent: :destroy
 
   def admin?
-    roles.each do |role|
-      return true if role.name == 'ADMIN'
-    end
+    map_role_names.include?('ADMIN')
   end
 
   def househunter?
-    roles.each do |role|
-      return true if role.name == 'HOUSE-HUNTER'
-    end
+    map_role_names.include?('HOUSE-HUNTER')
   end
 
   def realtor?
-    roles.each do |role|
-      return true if role.name == 'REALTOR'
-    end
+    map_role_names.include?('REALTOR')
+
+  end
+
+  def map_role_names
+    roles.each.map &:name
   end
 
   # Include default devise modules. Others available are:

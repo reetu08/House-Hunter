@@ -1,0 +1,7 @@
+<div class="authform">
+  <%= form_for @user, :url => user_path(@user), :html => {:method => :put} do |form| %>
+    <h3>Update User</h3>
+    <%= render form %>
+    <%= form.submit 'Update', :class => 'button right' %>
+  <% end %>
+</div>

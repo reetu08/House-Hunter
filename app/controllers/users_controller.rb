@@ -17,16 +17,40 @@ class UsersController < ApplicationController
     authorize @user
   end
 
-  def manual_create
-    @user = User.new secure_params
+  def edit
+    @user = User.find(params[:id])
     authorize @user
-    @token = Devise.friendly_token(10)
+  end
+
+  def update
+    @user = User.find(params[:id])
+    authorize User
+
+    @user = build_user_roles(@user, params)
 
     if @user.save
-      UserMailer.with(user: @user, token: @token).welcome_email.deliver_later
-      redirect_to '/users', :note => "User created and email sent"
+      redirect_to user_path(@user), :note => "User updated"
     else
-      redirect_to '/users', :alert => "Unable to create user."
+      redirect_to user_path(@user), :alert => "Unable to update user."
+    end
+  end
+
+  def manual_create
+    @user = User.new secure_params
+    authorize User
+
+    @token = Devise.friendly_token(12)
+    @user.password = @token
+    @user.reset_password_token = @token
+
+    @user = build_user_roles(@user, params)
+
+    if @user.save
+      WelcomeMailer.with(user: @user, token: @token).welcome_email.deliver_later
+      redirect_to users_path, :note => "User created and email sent"
+    else
+      redirect_to new_user_path, :alert => "Unable to create user."
+
     end
   end
 
@@ -40,7 +64,15 @@ class UsersController < ApplicationController
   private
 
   def secure_params
-    params.require(:user).permit(:role)
+    params.require(:user).permit(:name, :email)
+  end
+
+  def build_user_roles(user, params)
+    user.roles = []
+    params[:user][:roles].each do |role_id|
+      user.roles << Role.find_by_id(role_id)
+    end
+    user
   end
 
 end
