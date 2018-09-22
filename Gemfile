@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
-ruby '2.5.1'
+ruby '~> 2.4.0'
 gem 'rails', '~> 5.2.1'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
@@ -30,8 +30,7 @@ gem 'haml-rails'
 gem 'high_voltage'
 gem 'jquery-rails'
 gem 'pundit'
-gem 'unicorn'
-gem 'unicorn-rails'
+
 group :development do
   gem 'better_errors'
   gem 'html2haml'
@@ -41,5 +40,7 @@ group :development, :test do
   gem 'sqlite3'
 end
 group :production do
+  gem 'unicorn'
+  gem 'unicorn-rails'
   gem 'pg'
 end
