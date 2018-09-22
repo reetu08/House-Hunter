@@ -8,10 +8,10 @@
 </div>
 <div class="form-group">
   <%= form.label :roles %>
-  <div>
-    <% Role.all.each do |role| %>
-      <%= form.label role.name %>
-      <%= form.check_box(:roles, {:multiple => :true, :checked => @user.roles.map { |role| role.id }.include?(role.id) }, role.id, false) %>
-    <% end %>
-  </div>
+    <% Role.user_roles.each do |role| %>
+      <div>
+        <%= form.label role.name %>
+        <%= form.check_box(:roles, {:multiple => :true, :checked => @user.roles.map { |role| role.id }.include?(role.id) }, role.id, false) %>
+      </div>
+  <% end %>
 </div>

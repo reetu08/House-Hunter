@@ -4,8 +4,12 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
+one:
+  name: Test One
+  email: one@something.org
+  roles: <% [{:id => 1, :name => 'ADMIN'}, {:id => 1, :name => 'NOT-ADMIN'}] %>
 #
-two: {}
-# column: value
+two:
+  name: Test Two
+  email: two@something.org
+  roles: <% [{:id => 1, :name => 'NOT-ADMIN'}] %>

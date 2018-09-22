@@ -3,20 +3,27 @@ class User < ApplicationRecord
   has_many :roles, through: :user_roles, dependent: :destroy
 
   def admin?
-    map_role_names.include?('ADMIN')
+    map_available_roles.include?('ADMIN')
   end
 
   def househunter?
-    map_role_names.include?('HOUSE-HUNTER')
+    map_available_roles.include?('HOUSE-HUNTER')
   end
 
   def realtor?
-    map_role_names.include?('REALTOR')
+    map_available_roles.include?('REALTOR')
 
   end
 
-  def map_role_names
+  def map_available_roles
     roles.each.map &:name
+  end
+
+  def build_user_roles(role_ids)
+    self.roles.clear
+    role_ids.each do |role_id|
+      self.roles << Role.find_by_id(role_id)
+    end
   end
 
   # Include default devise modules. Others available are:

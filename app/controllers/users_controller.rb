@@ -26,10 +26,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     authorize User
 
-    @user = build_user_roles(@user, params)
+    @user.build_user_roles(params[:user][:roles])
 
     if @user.save
-      redirect_to user_path(@user), :note => "User updated"
+      redirect_to user_path(@user), :notice => "User updated"
     else
       redirect_to user_path(@user), :alert => "Unable to update user."
     end
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     @user.password = @token
     @user.reset_password_token = @token
 
-    @user = build_user_roles(@user, params)
+    @user.build_user_roles(params[:user][:roles])
 
     if @user.save
       WelcomeMailer.with(user: @user, token: @token).welcome_email.deliver_later
@@ -65,14 +65,6 @@ class UsersController < ApplicationController
 
   def secure_params
     params.require(:user).permit(:name, :email)
-  end
-
-  def build_user_roles(user, params)
-    user.roles = []
-    params[:user][:roles].each do |role_id|
-      user.roles << Role.find_by_id(role_id)
-    end
-    user
   end
 
 end

@@ -1,7 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: ADMIN
 
 two:
-  name: MyString
+  name: HOUSE-HUNTER
+
+three:
+  name: REALTOR
