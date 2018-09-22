@@ -88,5 +88,21 @@
       <artifact name="ClickHouse" use="true" />
       <option name="auto-sync" value="true" />
     </driver>
+    <driver id="71793d99-f803-464e-883f-b06783e23201" name="Rails cookbook3: development driver" dialect="SQLite" driver-class="org.sqlite.JDBC" icon="AllIcons.Providers.Sqlite">
+      <url-template name="default" template="jdbc:sqlite:{file::identifier.sqlite}?" />
+      <artifact name="Xerial SQLiteJDBC" use="true" version="3.20.1.1" />
+      <option name="auto-sync" value="true" />
+      <option name="auto-commit" value="true" />
+      <option name="send-app-info" value="true" />
+      <option name="schema-control" value="AUTOMATIC" />
+      <property name="enable_load_extension" value="true" />
+      <library>
+        <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/sqlite-jdbc-3.8.9.jar</url>
+      </library>
+      <library>
+        <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/xerial-sqlite-license.txt</url>
+      </library>
+      <code-style-scheme-name>Default</code-style-scheme-name>
+    </driver>
   </component>
 </application>
