@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: 
+  website: 
+  addr: 
+  found_year: 
+  revenue: 
+  synopsis: MyString
+
+two:
+  name: 
+  website: 
+  addr: 
+  found_year: 
+  revenue: 
+  synopsis: MyString
