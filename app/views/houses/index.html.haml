@@ -1,0 +1,45 @@
+%h1 Listing houses
+
+%table
+  %thead
+    %tr
+      %th Company
+      %th Location
+      %th Area
+      %th Year built
+      %th Style
+      %th Price
+      %th Floors
+      %th Has basement
+      %th Owner
+      %th Phone
+      %th Email
+      %th User
+      %th Image path
+      %th
+      %th
+      %th
+
+  %tbody
+    - @houses.each do |house|
+      %tr
+        %td= house.company
+        %td= house.location
+        %td= house.area
+        %td= house.year_built
+        %td= house.style
+        %td= house.price
+        %td= house.floors
+        %td= house.has_basement
+        %td= house.owner
+        %td= house.phone
+        %td= house.email
+        %td= house.user
+        %td= house.image_path
+        %td= link_to 'Show', house
+        %td= link_to 'Edit', edit_house_path(house)
+        %td= link_to 'Destroy', house, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New House', new_house_path

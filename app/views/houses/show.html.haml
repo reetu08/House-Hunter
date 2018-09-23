@@ -1,0 +1,45 @@
+%p#notice= notice
+
+%p
+  %b Company:
+  = @house.company
+%p
+  %b Location:
+  = @house.location
+%p
+  %b Area:
+  = @house.area
+%p
+  %b Year built:
+  = @house.year_built
+%p
+  %b Style:
+  = @house.style
+%p
+  %b Price:
+  = @house.price
+%p
+  %b Floors:
+  = @house.floors
+%p
+  %b Has basement:
+  = @house.has_basement
+%p
+  %b Owner:
+  = @house.owner
+%p
+  %b Phone:
+  = @house.phone
+%p
+  %b Email:
+  = @house.email
+%p
+  %b User:
+  = @house.user
+%p
+  %b Image path:
+  = @house.image_path
+
+= link_to 'Edit', edit_house_path(@house)
+\|
+= link_to 'Back', houses_path

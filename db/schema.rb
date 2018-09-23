@@ -10,7 +10,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_16_233844) do
+ActiveRecord::Schema.define(version: 2018_09_23_201427) do
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.string "website"
+    t.string "addr"
+    t.integer "found_year"
+    t.integer "revenue"
+    t.string "synopsis"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "houses", force: :cascade do |t|
+    t.integer "company_id"
+    t.integer "user_id"
+    t.string "location"
+    t.string "area"
+    t.integer "year_built"
+    t.string "style"
+    t.integer "price"
+    t.integer "floors"
+    t.boolean "has_basement"
+    t.string "owner"
+    t.string "phone"
+    t.string "email"
+    t.string "image_path"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_houses_on_company_id"
+    t.index ["user_id"], name: "index_houses_on_user_id"
+  end
+
+  create_table "potential_buyers", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "house_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["house_id"], name: "index_potential_buyers_on_house_id"
+    t.index ["user_id", "house_id"], name: "index_potential_buyers_on_user_id_and_house_id", unique: true
+    t.index ["user_id"], name: "index_potential_buyers_on_user_id"
+  end
+
+  create_table "realtors", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "company_id"
+    t.boolean "is_owner", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_realtors_on_company_id"
+    t.index ["user_id", "company_id"], name: "index_realtors_on_user_id_and_company_id", unique: true
+    t.index ["user_id"], name: "index_realtors_on_user_id"
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"

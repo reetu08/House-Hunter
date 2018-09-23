@@ -1,0 +1,28 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @company.name
+%p
+  %b Website:
+  = @company.website
+%p
+  %b Address:
+  = @company.addr
+%p
+  %b Found year:
+  = @company.found_year
+%p
+  %b Revenue:
+  = @company.revenue
+%p
+  %b Synopsis:
+  = @company.synopsis
+
+%p
+  %b Owner
+  = @company.owned_by
+
+= link_to 'Edit', edit_company_path(@company)
+\|
+= link_to 'Back', companies_path
