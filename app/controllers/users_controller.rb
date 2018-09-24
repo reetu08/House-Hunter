@@ -26,6 +26,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     authorize User
 
+    @user.assign_attributes secure_params
     @user.build_user_roles(params[:user][:roles])
 
     if @user.save
@@ -64,7 +65,7 @@ class UsersController < ApplicationController
   private
 
   def secure_params
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:name, :email, :preferred_contact, :phone)
   end
 
 end

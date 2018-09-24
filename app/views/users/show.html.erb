@@ -1,6 +1,8 @@
 <h3>User</h3>
 <p>Name: <%= @user.name if @user.name %></p>
 <p>Email: <%= @user.email if @user.email %></p>
+<p>Phone: <%= @user.phone if @user.phone %></p>
+<p>Preferred Contact Method: <%= @user.preferred_contact if @user.preferred_contact %></p>
 <% if current_user.admin? %>
   <p>Roles: <%= @user.map_available_roles.join(',') %></p>
 <% end %>

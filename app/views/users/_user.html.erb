@@ -3,11 +3,12 @@
 </td>
 <td>
   <% if (current_user.admin? and user != current_user) %>
-   <%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') %>
+    <%= link_to("Edit user", edit_user_path(user), :method => :get, :class => 'button-xs') %>
   <% end %>
 </td>
 <td>
   <% if (current_user.admin? and user != current_user) %>
-    <%= link_to("Edit user", edit_user_path(user), :method => :get, :class => 'button-xs') %>
+   <%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') %>
   <% end %>
 </td>
+
