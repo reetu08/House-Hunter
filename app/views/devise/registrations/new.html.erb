@@ -11,21 +11,29 @@
       <%= f.email_field :email, class: 'form-control' %>
     </div>
     <div class="form-group">
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
+      <%= f.label :phone %>
+      <%= f.phone_field :phone, class: 'form-control' %>
     </div>
     <div class="form-group">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <%= f.label :preferred_contact %>
+      <%= f.select :preferred_contact, User.preferred_contact_types.map{|value| [value, value]}, class: 'form-control' %>
     </div>
     <div class="form-group">
       <%= f.label :roles %>
       <% Role.user_roles.each do |role| %>
         <div>
           <%= f.label role.name %>
-          <%= f.check_box(:roles, {:multiple => :true, :checked => @user.roles.map { |role| role.id }.include?(role.id) }, role.id, false) %>
+          <%= f.check_box(:role_ids, {:multiple => :true, :checked => @user.roles.map { |role| role.id }.include?(role.id) }, role.id, false) %>
         </div>
       <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
     </div>
      <%= f.submit 'Sign up', :class => 'button right' %>
   <% end %>

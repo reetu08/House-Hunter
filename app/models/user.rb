@@ -25,13 +25,6 @@ class User < ApplicationRecord
     roles.each.map &:name
   end
 
-  def build_user_roles(role_ids)
-    self.roles.clear
-    role_ids.each do |role_id|
-      self.roles << Role.find_by_id(role_id)
-    end
-  end
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
