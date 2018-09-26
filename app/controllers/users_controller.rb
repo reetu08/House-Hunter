@@ -25,12 +25,16 @@ class UsersController < ApplicationController
     authorize @user
 
     @user.assign_attributes secure_params
+    if params[:user][:role_ids].nil?
+      redirect_to edit_user_path(@user), :alert => "Most have at least one Role selected"
+      return
+    end
     @user.role_ids = params[:user][:role_ids]
 
     if @user.save
       redirect_to user_path(@user), :notice => "User updated"
     else
-      redirect_to user_path(@user), :alert => "Unable to update user."
+      redirect_to edit_user_path(@user), :alert => "Unable to update user."
     end
   end
 
@@ -38,6 +42,10 @@ class UsersController < ApplicationController
     @user = User.new secure_params
     authorize @user
 
+    if params[:user][:role_ids].nil?
+      redirect_to user_path(@user), :alert => "Most have at least one Role selected"
+      return
+    end
     @user.role_ids = params[:user][:role_ids]
 
     token, enc = Devise.token_generator.generate(User, :reset_password_token)
