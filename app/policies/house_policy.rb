@@ -15,11 +15,11 @@ class HousePolicy < ApplicationPolicy
   end
 
   def update?
-    @current_user.admin? or @current_user.realtor?
+    @current_user.admin? or @current_user.id == @house.user_id
   end
 
   def destroy?
-    @current_user.admin? or @current_user.realtor?
+    @current_user.admin? or @current_user.id == @house.user_id
   end
 
   def new?
