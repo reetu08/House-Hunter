@@ -12,7 +12,7 @@ one:
   owner: MyString
   phone: MyString
   email: MyString
-  user: one
+  user: two
   image_path: MyString
 
 two:
@@ -27,5 +27,5 @@ two:
   owner: MyString
   phone: MyString
   email: MyString
-  user: two
+  user: one
   image_path: MyString

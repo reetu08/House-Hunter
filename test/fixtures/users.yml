@@ -7,9 +7,12 @@
 one:
   name: Test One
   email: one@something.org
-  roles: <% [{:id => 1, :name => 'ADMIN'}, {:id => 1, :name => 'NOT-ADMIN'}] %>
-#
+  phone: 9191234567
+  preferred_contact: email
+
 two:
   name: Test Two
   email: two@something.org
-  roles: <% [{:id => 1, :name => 'NOT-ADMIN'}] %>
+  phone: 9197654321
+  preferred_contact: text
+

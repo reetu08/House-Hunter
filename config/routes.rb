@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :inquiries
   resources :houses
   resources :companies
   root to: 'visitors#index'

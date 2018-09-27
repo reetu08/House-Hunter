@@ -31,4 +31,8 @@ class Company < ApplicationRecord
     owning_user = User.find_by_id owning_realtor.user_id
     owning_user.name
   end
+
+  def size
+    realtors.size
+  end
 end
