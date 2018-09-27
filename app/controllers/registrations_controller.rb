@@ -9,11 +9,13 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def update_resource(resource, password)
-    if params[:user][:role_ids].nil?
+    if !resource.admin? and params[:user][:role_ids].nil?
       resource.errors.add(:role_ids, 'Must have at least one Role selected')
       return false
     end
-    resource.role_ids = (params[:user][:role_ids])
+    if !resource.admin?
+      resource.role_ids = params[:user][:role_ids]
+    end
     super resource, password
   end
 

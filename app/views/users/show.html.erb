@@ -5,7 +5,9 @@
 <p>Preferred Contact Method: <%= @user.preferred_contact if @user.preferred_contact %></p>
 <% if current_user.admin? %>
   <p>Roles: <%= @user.map_available_roles.join(',') %></p>
+<% end %>
+<% if current_user == @user %>
+  <%= link_to('Edit', edit_user_registration_path(@user), :class => 'button-xs') %>
+<% else current_user.admin? %>
   <%= link_to('Edit', edit_user_path(@user), :class => 'button-xs') %>
-<% else %>
-<%= link_to('Edit', edit_user_registration_path(@user), :class => 'button-xs') %>
 <% end %>

@@ -21,15 +21,17 @@
       <%= f.label :preferred_contact %>
       <%= f.select :preferred_contact, User.preferred_contact_types.map{|value| [value, value]}, class: 'form-control' %>
     </div>
-    <div class="form-group">
-      <%= f.label :roles %>
-      <% Role.user_roles.each do |role| %>
-        <div>
-          <%= f.label role.name %>
-          <%= f.check_box(:role_ids, {:multiple => :true, :checked => resource.roles.map { |role| role.id }.include?(role.id) }, role.id, false) %>
-        </div>
-      <% end %>
-    </div>
+    <% if !resource.admin? %>
+      <div class="form-group">
+        <%= f.label :roles %>
+        <% Role.user_roles.each do |role| %>
+          <div>
+            <%= f.label role.name %>
+            <%= f.check_box(:role_ids, {:multiple => :true, :checked => resource.roles.map { |role| role.id }.include?(role.id) }, role.id, false) %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
     <div>
       <p>Leave these fields blank if you don't want to change your password.</p>
       <div class="form-group">

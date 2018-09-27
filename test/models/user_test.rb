@@ -19,4 +19,14 @@ class UserTest < ActiveSupport::TestCase
     user = User.find_by_email 'two@something.org'
     assert_not user.admin?
   end
+
+  test "New User valid" do
+    user = User.new
+    user.name = "Dan"
+    user.phone = "9191234567"
+    user.email = "something@something.com"
+    user.password = "password"
+    user.preferred_contact = User.preferred_contact_types[1]
+    assert user.valid?
+  end
 end
