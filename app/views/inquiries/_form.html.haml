@@ -1,22 +1,21 @@
-= form_for @inquiry do |f|
-  - if @inquiry.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@inquiry.errors.count, "error")} prohibited this inquiry from being saved:"
-      %ul
-        - @inquiry.errors.full_messages.each do |message|
-          %li= message
+.authform
+  %h2 #{title}
+  = form_for @inquiry do |f|
+    - if @inquiry.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@inquiry.errors.count, "error")} prohibited this inquiry from being saved:"
+        %ul
+          - @inquiry.errors.full_messages.each do |message|
+            %li= message
 
-  .field
-    = f.label :house
-    = f.text_field :house
-  .field
-    = f.label :user
-    = f.text_field :user
-  .field
-    = f.label :subject
-    = f.text_area :subject
-  .field
-    = f.label :message
-    = f.text_field :message
-  .actions
-    = f.submit 'Save'
+    .form-group
+      = f.hidden_field :house_id, value: @inquiry.house_id
+      = f.hidden_field :user_id, value: @inquiry.user_id
+    .form-group
+      = f.label :subject
+      = f.text_field :subject, :class => 'form-control'
+    .form-group
+      = f.label :message
+      = f.text_area :message, :class => 'form-control'
+    .actions
+      = f.submit 'Save', :class => 'button'

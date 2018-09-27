@@ -1,0 +1,19 @@
+%table
+  %thead
+    %tr
+      %th House
+      %th Subject
+      %th Message
+
+  %tbody
+    - inquiries.each do |inquiry|
+      %tr
+        %td= inquiry.house
+        %td= inquiry.subject
+        %td= inquiry.message
+        %td= link_to 'Show', inquiry
+        - if can_edit
+          %td= link_to 'Edit', edit_inquiry_path(inquiry)
+          %td= link_to 'Destroy', inquiry, method: :delete, data: { confirm: 'Are you sure?' }
+
+= link_to 'Back', inquiries_path, :class => 'button-xs'

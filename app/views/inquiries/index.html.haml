@@ -1,27 +1,19 @@
 %h1 Listing inquiries
 
-%table
-  %thead
-    %tr
-      %th House
-      %th User
-      %th Subject
-      %th Message
-      %th
-      %th
-      %th
-
-  %tbody
-    - @inquiries.each do |inquiry|
-      %tr
-        %td= inquiry.house
-        %td= inquiry.user
-        %td= inquiry.subject
-        %td= inquiry.message
-        %td= link_to 'Show', inquiry
-        %td= link_to 'Edit', edit_inquiry_path(inquiry)
-        %td= link_to 'Destroy', inquiry, method: :delete, data: { confirm: 'Are you sure?' }
-
 %br
 
-= link_to 'New Inquiry', new_inquiry_path
+- if current_user.househunter?
+  %h2 Send Inquiries
+
+  - render 'list', :can_edit => true, :inquiries => @sent_inquiries
+
+  %br
+
+%hr
+
+- if current_user.realtor?
+  %h2 Received Inquiries
+
+  - render 'list', :can_edit => false, :inquiries => @received_inquiries
+
+  %br

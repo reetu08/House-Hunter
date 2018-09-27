@@ -1,30 +1,45 @@
 class InquiriesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_inquiry, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized
+
 
   # GET /inquiries
   # GET /inquiries.json
   def index
     @inquiries = Inquiry.all
+    @sent_inquiries = Inquiry.where :user_id => current_user.id
+
+    @received_inquiries = Inquiry.for_realtor current_user.id
+
+    authorize @inquiries
   end
 
   # GET /inquiries/1
   # GET /inquiries/1.json
   def show
+    authorize @inquiry
   end
 
   # GET /inquiries/new
   def new
     @inquiry = Inquiry.new
+
+    @inquiry.house_id = params[:house_id]
+    @inquiry.user_id = current_user.id
+    authorize @inquiry
   end
 
   # GET /inquiries/1/edit
   def edit
+    authorize @inquiry
   end
 
   # POST /inquiries
   # POST /inquiries.json
   def create
     @inquiry = Inquiry.new(inquiry_params)
+    authorize @inquiry
 
     respond_to do |format|
       if @inquiry.save
@@ -40,6 +55,8 @@ class InquiriesController < ApplicationController
   # PATCH/PUT /inquiries/1
   # PATCH/PUT /inquiries/1.json
   def update
+    authorize @inquiry
+
     respond_to do |format|
       if @inquiry.update(inquiry_params)
         format.html { redirect_to @inquiry, notice: 'Inquiry was successfully updated.' }
@@ -54,6 +71,8 @@ class InquiriesController < ApplicationController
   # DELETE /inquiries/1
   # DELETE /inquiries/1.json
   def destroy
+    authorize @inquiry
+
     @inquiry.destroy
     respond_to do |format|
       format.html { redirect_to inquiries_url, notice: 'Inquiry was successfully destroyed.' }
