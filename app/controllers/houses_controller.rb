@@ -5,26 +5,31 @@ class HousesController < ApplicationController
   # GET /houses.json
   def index
     @houses = House.all
+    authorize @houses
   end
 
   # GET /houses/1
   # GET /houses/1.json
   def show
+    authorize @house
   end
 
   # GET /houses/new
   def new
     @house = House.new
+    authorize @house
   end
 
   # GET /houses/1/edit
   def edit
+    authorize @house
   end
 
   # POST /houses
   # POST /houses.json
   def create
     @house = House.new(house_params)
+    authorize @house
 
     respond_to do |format|
       if @house.save
@@ -40,6 +45,8 @@ class HousesController < ApplicationController
   # PATCH/PUT /houses/1
   # PATCH/PUT /houses/1.json
   def update
+    authorize @house
+
     respond_to do |format|
       if @house.update(house_params)
         format.html { redirect_to @house, notice: 'House was successfully updated.' }
@@ -54,6 +61,8 @@ class HousesController < ApplicationController
   # DELETE /houses/1
   # DELETE /houses/1.json
   def destroy
+    authorize @house
+
     @house.destroy
     respond_to do |format|
       format.html { redirect_to houses_url, notice: 'House was successfully destroyed.' }

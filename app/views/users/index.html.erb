@@ -13,4 +13,9 @@
       </table>
     </div>
   </div>
+  <div class="row">
+    <% if (current_user.admin?) %>
+      <%= link_to("Add user", new_user_path, :class => 'button-xs') %>
+    <% end %>
+  </div>
 </div>

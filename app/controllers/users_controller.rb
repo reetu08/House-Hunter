@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized
 
   def index
     @users = User.all
-    authorize User
+    authorize @users
   end
 
   def show
-    @user = User.find(params[:id])
     authorize @user
   end
 
@@ -18,35 +18,44 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
     authorize @user
   end
 
   def update
-    @user = User.find(params[:id])
-    authorize User
+    authorize @user
 
-    @user = build_user_roles(@user, params)
+    @user.assign_attributes secure_params
+    if params[:user][:role_ids].nil?
+      redirect_to edit_user_path(@user), :alert => "Most have at least one Role selected"
+      return
+    end
+    @user.role_ids = params[:user][:role_ids]
 
     if @user.save
-      redirect_to user_path(@user), :note => "User updated"
+      redirect_to user_path(@user), :notice => "User updated"
     else
-      redirect_to user_path(@user), :alert => "Unable to update user."
+      redirect_to edit_user_path(@user), :alert => "Unable to update user."
     end
   end
 
   def manual_create
     @user = User.new secure_params
-    authorize User
+    authorize @user
 
-    @token = Devise.friendly_token(12)
-    @user.password = @token
-    @user.reset_password_token = @token
+    if params[:user][:role_ids].nil?
+      redirect_to user_path(@user), :alert => "Most have at least one Role selected"
+      return
+    end
+    @user.role_ids = params[:user][:role_ids]
 
-    @user = build_user_roles(@user, params)
+    token, enc = Devise.token_generator.generate(User, :reset_password_token)
+
+    @user.password = token
+    @user.reset_password_token = enc
+    @user.reset_password_sent_at = Time.now.utc
 
     if @user.save
-      WelcomeMailer.with(user: @user, token: @token).welcome_email.deliver_later
+      WelcomeMailer.with(user: @user, token: token).welcome_email.deliver_later
       redirect_to users_path, :note => "User created and email sent"
     else
       redirect_to new_user_path, :alert => "Unable to create user."
@@ -55,24 +64,19 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
-    authorize user
-    user.destroy
+    authorize @user
+    @user.destroy
     redirect_to users_path, :notice => "User deleted."
   end
 
   private
 
-  def secure_params
-    params.require(:user).permit(:name, :email)
+  def set_user
+    @user = User.find(params[:id])
   end
 
-  def build_user_roles(user, params)
-    user.roles = []
-    params[:user][:roles].each do |role_id|
-      user.roles << Role.find_by_id(role_id)
-    end
-    user
+  def secure_params
+    params.require(:user).permit(:name, :email, :preferred_contact, :phone)
   end
 
 end

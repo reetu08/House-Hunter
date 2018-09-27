@@ -2,20 +2,30 @@ class User < ApplicationRecord
   has_many :user_roles
   has_many :roles, through: :user_roles, dependent: :destroy
 
+  validates :name, presence: true
+  validates :email, presence: true, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }
+  validates :phone, presence: true, length: { within: (9..10) }, numericality: { only_integer: true }
+
+  @@preferred_contact_types = [:text, :call, :email]
+
+  def self.preferred_contact_types
+    @@preferred_contact_types
+  end
+
   def admin?
-    map_role_names.include?('ADMIN')
+    map_available_roles.include?('ADMIN')
   end
 
   def househunter?
-    map_role_names.include?('HOUSE-HUNTER')
+    map_available_roles.include?('HOUSE-HUNTER')
   end
 
   def realtor?
-    map_role_names.include?('REALTOR')
+    map_available_roles.include?('REALTOR')
 
   end
 
-  def map_role_names
+  def map_available_roles
     roles.each.map &:name
   end
 

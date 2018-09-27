@@ -7,3 +7,7 @@ one:
 two:
   user: two
   role: two
+
+three:
+  user: one
+  role: two
