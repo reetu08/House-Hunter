@@ -40,8 +40,8 @@ group :development, :test do
   gem 'sqlite3'
 end
 group :production do
-  gem 'puma'
-  gem 'unicorn'
-  gem 'unicorn-rails'
+  #gem 'puma'
+  #gem 'unicorn'
+  #gem 'unicorn-rails'
   gem 'pg'
 end
