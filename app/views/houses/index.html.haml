@@ -23,7 +23,6 @@
   %tbody
     - @houses.each do |house|
       %tr
-        %td= house.company
         %td= house.location
         %td= house.area
         %td= house.year_built
@@ -34,8 +33,6 @@
         %td= house.owner
         %td= house.phone
         %td= house.email
-        %td= house.user
-        %td= house.image_path
         %td= link_to 'Show', house
         %td= link_to 'Edit', edit_house_path(house)
         %td= link_to 'Destroy', house, method: :delete, data: { confirm: 'Are you sure?' }

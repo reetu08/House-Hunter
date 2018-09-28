@@ -14,7 +14,6 @@ class CreateHouses < ActiveRecord::Migration[5.2]
       t.string :owner
       t.string :phone
       t.string :email
-      t.string :image_path
 
       t.timestamps
     end

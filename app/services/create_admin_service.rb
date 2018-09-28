@@ -4,6 +4,8 @@ class CreateAdminService
         user.name = "Admin"
         user.password = Rails.application.secrets.admin_password
         user.password_confirmation = Rails.application.secrets.admin_password
+        user.phone = "9199199191"
+        user.preferred_contact = "email"
       end
   end
 end

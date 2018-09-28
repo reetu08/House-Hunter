@@ -2,7 +2,7 @@
 
 %p
   %b Company:
-  = @house.company
+  = @house.company.name
 %p
   %b Location:
   = @house.location
@@ -35,10 +35,10 @@
   = @house.email
 %p
   %b User:
-  = @house.user
+  = @house.user.name
 %p
   %b Image path:
-  <%= image_tag ("#{@house.image_path}", class: "img-responsive")%>
+  = image_tag @house.image_path
 
 = link_to 'Edit', edit_house_path(@house)
 \|
