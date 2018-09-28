@@ -7,8 +7,8 @@
           %li= message
 
   .field
-    = f.label :company
-    = f.select :company, Company.all.collect {|c| [c.name, c.id] }
+    = f.label :company_id
+    = f.select :company_id, Company.all.collect {|c| [c.name, c.id] }
   .field
     = f.label :location
     = f.text_field :location
@@ -40,10 +40,10 @@
     = f.label :email
     = f.text_field :email
   .field
-    = f.label :user
-    = f.select :user, User.all.select{|u| u.admin? || u.realtor? }.collect {|u| [u.name, u.id] }
+    = f.label :user_id
+    = f.select :user_id, User.all.select{|u| u.admin? || u.realtor? }.collect {|u| [u.name, u.id] }
   .field
     = f.label :image_path
-    = f.text_field :image_path
+    = f.file_field :image_path
   .actions
     = f.submit 'Save'

@@ -30,6 +30,7 @@ class HousesController < ApplicationController
   def create
     @house = House.new(house_params)
     authorize @house
+    @house.image_path.attach(params[:house][:image_path])
 
     respond_to do |format|
       if @house.save
@@ -46,6 +47,7 @@ class HousesController < ApplicationController
   # PATCH/PUT /houses/1.json
   def update
     authorize @house
+    @house.image_path.attach(params[:house][:image_path])
 
     respond_to do |format|
       if @house.update(house_params)
@@ -78,6 +80,6 @@ class HousesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def house_params
-      params.require(:house).permit(:company_id, :location, :area, :year_built, :style, :price, :floors, :has_basement, :owner, :phone, :email, :user_id, :image_path)
+      params.require(:house).permit(:company_id, :location, :area, :year_built, :style, :price, :floors, :has_basement, :owner, :phone, :email, :user_id)
     end
 end
