@@ -2,12 +2,14 @@
 
 one:
   house: one
-  user: one
-  subject: MyText
+  user: three
+  subject: MyFirstInquiry
   message: MyString
 
 two:
   house: two
-  user: two
-  subject: MyText
+  user: three
+  subject: MySecondInquiry
   message: MyString
+
+

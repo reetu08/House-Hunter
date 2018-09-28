@@ -36,4 +36,16 @@ class InquiryTest < ActiveSupport::TestCase
     assert_not inquiry.valid?
   end
 
+  test "Get by User ID returns non-empty" do
+    inquiries = Inquiry.where :user_id => users(:three).id
+    assert_equal(inquiries.size, 2)
+    assert inquiries.includes inquiries(:one)
+  end
+
+  test "Get by Realtor ID returns non-empty" do
+    inquiries = Inquiry.for_realtor users(:one).id
+    assert_equal(inquiries.size, 1)
+    assert inquiries.includes inquiries(:two)
+  end
+
 end

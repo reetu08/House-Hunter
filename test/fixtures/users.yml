@@ -16,3 +16,9 @@ two:
   phone: 9197654321
   preferred_contact: text
 
+three:
+  name: Test Three
+  email: three@something.org
+  phone: 9197654321
+  preferred_contact: call
+
