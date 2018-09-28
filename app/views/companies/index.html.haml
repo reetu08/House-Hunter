@@ -5,8 +5,9 @@
     %tr
       %th Name
       %th Website
-      %th Addr
-      %th Found year
+      %th Address
+      %th Size
+      %th Found Year
       %th Revenue
       %th Synopsis
       %th
@@ -19,8 +20,9 @@
         %td= company.name
         %td= company.website
         %td= company.addr
+        %td= company.size
         %td= company.found_year
-        %td= company.revenue
+        %td= "$#{company.revenue} million per year"
         %td= company.synopsis
         %td= link_to 'Show', company
         %td= link_to 'Edit', edit_company_path(company)

@@ -10,11 +10,14 @@
   %b Address:
   = @company.addr
 %p
+  %b Size:
+  = @company.size
+%p
   %b Found year:
   = @company.found_year
 %p
   %b Revenue:
-  = @company.revenue
+  = "$#{@company.revenue} million per year"
 %p
   %b Synopsis:
   = @company.synopsis

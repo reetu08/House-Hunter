@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2018_09_28_002615) do
     t.string "name"
     t.string "website"
     t.string "addr"
+    t.integer "size"
     t.integer "found_year"
     t.integer "revenue"
     t.string "synopsis"
