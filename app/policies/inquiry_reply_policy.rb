@@ -12,7 +12,7 @@ class InquiryReplyPolicy < ApplicationPolicy
 
   def show?
     if @current_user.admin? or @inquiry_reply.realtor_id == @current_user.id
-      true
+      return true
     end
 
     inquiry = Inquiry.find @inquiry_reply.inquiry_id
@@ -20,19 +20,11 @@ class InquiryReplyPolicy < ApplicationPolicy
   end
 
   def new?
-    if @current_user.admin?
-      true
-    end
-
-    can_send_reply?
+    @current_user.admin? or can_send_reply?
   end
 
   def create?
-    if @current_user.admin?
-      true
-    end
-
-    can_send_reply?
+    @current_user.admin? or can_send_reply?
   end
 
   private
