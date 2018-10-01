@@ -7,7 +7,7 @@ class InquiryPolicy < ApplicationPolicy
   end
 
   def index?
-    @current_user.admin?
+    true
   end
 
   def show?

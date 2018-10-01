@@ -2,10 +2,10 @@
 
 %p
   %b House:
-  = @inquiry.house
+  = link_to 'House', house_path(@inquiry.house.id)
 %p
   %b User:
-  = @inquiry.user
+  = User.find(@inquiry.user.id).name
 %p
   %b Subject:
   = @inquiry.subject
@@ -16,3 +16,8 @@
 = link_to 'Edit', edit_inquiry_path(@inquiry)
 \|
 = link_to 'Back', inquiries_path
+
+- if current_user.realtor? or current_user.admin?
+  \|
+  = link_to 'Reply', new_inquiry_reply_path(:inquiry_id => @inquiry.id)
+

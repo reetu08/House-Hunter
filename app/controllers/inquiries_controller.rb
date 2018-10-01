@@ -8,9 +8,9 @@ class InquiriesController < ApplicationController
   # GET /inquiries.json
   def index
     @inquiries = Inquiry.all
-    @sent_inquiries = Inquiry.where :user_id => current_user.id
+    @sent_inquiries = Inquiry.where(:user_id => current_user.id).all
 
-    @received_inquiries = Inquiry.for_realtor current_user.id
+    @received_inquiries = Inquiry.for_realtor(current_user.id).all
 
     authorize @inquiries
   end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :inquiry_replies
   resources :inquiries
   resources :houses
   resources :companies
