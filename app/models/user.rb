@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :user_roles
   has_many :roles, through: :user_roles, dependent: :destroy
+  has_many :inquiry_reply, foreign_key: :realtor_id
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }

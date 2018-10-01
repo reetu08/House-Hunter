@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  inquiry: one
+  realtor_id: 
+  message: MyString
+
+two:
+  inquiry: two
+  realtor_id: 
+  message: MyString

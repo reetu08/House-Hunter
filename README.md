@@ -1,8 +1,6 @@
 House Hunter
 ================
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
 This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
 provided by the [RailsApps Project](http://railsapps.github.io/).
 
@@ -48,6 +46,10 @@ This will create your database in `db/development.sqlite3` and create the Admin 
 
 Documentation and Support
 -------------------------
+
+An initial user will be created for you in development when running `rake db:seed`. The user is an ADMIN user.
+
+Use email `admin@househunter.com` and password `househunteradmin` to access.
 
 Issues
 -------------

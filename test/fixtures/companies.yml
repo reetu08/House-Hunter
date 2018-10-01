@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: 
+  name: First Company
   website: 
-  addr: 
-  found_year: 
-  revenue: 
+  addr: 1220 Twin Branches Way
+  found_year: 1995
+  revenue: 900
   synopsis: MyString
 
 two:
-  name: 
-  website: 
-  addr: 
-  found_year: 
-  revenue: 
+  name: Second Company
+  website:
+  addr: 1222 Twin Branches Way
+  found_year: 1999
+  revenue: 90000
   synopsis: MyString

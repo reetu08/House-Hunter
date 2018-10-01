@@ -1,0 +1,20 @@
+%h1 Listing inquiries
+
+%br
+
+- if current_user.househunter?
+  %h2 Sent Inquiries
+
+  = render 'list', :can_edit => true, :inquiries => @sent_inquiries
+
+  %br
+
+- if current_user.realtor?
+  %hr
+  %h2 Received Inquiries
+
+  = render 'list', :can_edit => false, :inquiries => @received_inquiries
+
+  %br
+
+= link_to 'Back', inquiries_path, :class => 'button-xs'
