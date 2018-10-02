@@ -7,5 +7,6 @@ class Inquiry < ApplicationRecord
   validates :message, presence: true, allow_blank: false, length: { maximum: 250 }
 
   scope :for_realtor, lambda {|user_id| joins(:house).where('houses.user_id = ?', user_id)}
+  scope :for_house, lambda {|house_id| joins(:house).where('houses.id = ?', house_id)}
 
 end

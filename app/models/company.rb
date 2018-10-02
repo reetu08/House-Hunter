@@ -1,5 +1,6 @@
 class Company < ApplicationRecord
   has_many :realtors
+  has_many :houses
 
   validates :name, presence: true
   validates :website, presence: true,
@@ -35,4 +36,5 @@ class Company < ApplicationRecord
   def size
     realtors.size
   end
+
 end

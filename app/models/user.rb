@@ -23,7 +23,11 @@ class User < ApplicationRecord
 
   def realtor?
     map_available_roles.include?('REALTOR')
+  end
 
+  def is_realtor_for_house?(house_id)
+    realtors = Realtor.for_house(house_id)
+    realtors.select{ |realtor| realtor.user_id == id }.size == 1
   end
 
   def map_available_roles

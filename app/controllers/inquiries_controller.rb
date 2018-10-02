@@ -7,12 +7,16 @@ class InquiriesController < ApplicationController
   # GET /inquiries
   # GET /inquiries.json
   def index
-    @inquiries = Inquiry.all
+    authorize Inquiry.all
+
     @sent_inquiries = Inquiry.where(:user_id => current_user.id).all
 
-    @received_inquiries = Inquiry.for_realtor(current_user.id).all
+    if (params[:house_id].nil?)
+      @received_inquiries = Inquiry.for_realtor(current_user.id).all
+    else
+      @received_inquiries = Inquiry.for_house(params[:house_id]).all
+    end
 
-    authorize @inquiries
   end
 
   # GET /inquiries/1

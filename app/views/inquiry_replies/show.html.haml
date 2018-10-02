@@ -6,5 +6,6 @@
   - realtor = User.find @inquiry_reply.realtor_id
   = realtor.name
 
+=link_to 'Back', inquiry_path(@inquiry_reply.inquiry_id), { :method => :get, :class => 'button-xs' }
 - if current_user.admin? or @inquiry_reply.realtor_id == current_user.id
-  = link_to 'Destroy', inquiry_reply_url(@inquiry_reply), :method => :delete
+  = link_to 'Destroy', inquiry_reply_url(@inquiry_reply), { :method => :delete, :class => 'button-xs' }
