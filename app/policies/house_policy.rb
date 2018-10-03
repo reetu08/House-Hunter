@@ -23,11 +23,11 @@ class HousePolicy < ApplicationPolicy
   end
 
   def new?
-    @current_user.admin? or @current_user.realtor?
+    @current_user.admin? or (@current_user.realtor? && @current_user.realtor.nil?)
   end
 
   def create?
-    @current_user.admin? or @current_user.realtor?
+    @current_user.admin? or (@current_user.realtor? && @current_user.realtor.nil?)
   end
 
 end
