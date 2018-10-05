@@ -13,8 +13,4 @@
   %hr
   %h2 Received Inquiries
 
-  = render 'list', :can_edit => false, :inquiries => @received_inquiries
-
-  %br
-
-= link_to 'Back', inquiries_path, :class => 'button-xs'
+  = render 'list', :can_edit => current_user.admin?, :inquiries => @received_inquiries

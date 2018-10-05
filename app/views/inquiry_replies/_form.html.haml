@@ -1,5 +1,5 @@
 .authform
-  %h1 New Reply
+  %h1 #{title}
 
   = form_for @inquiry_reply do |f|
 
@@ -18,4 +18,4 @@
       = f.label :message
       = f.text_area :message, :class => 'form-control'
     .actions
-      = f.submit 'Save'
+      = f.submit 'Save', :class => 'button'

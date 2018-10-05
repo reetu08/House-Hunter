@@ -1,7 +1,7 @@
 class Inquiry < ApplicationRecord
   belongs_to :house
   belongs_to :user
-  has_one :inquiry_reply
+  has_one :inquiry_reply, :dependent => :delete
 
   validates :subject, presence: true, allow_blank: false, length: { maximum: 40 }
   validates :message, presence: true, allow_blank: false, length: { maximum: 250 }

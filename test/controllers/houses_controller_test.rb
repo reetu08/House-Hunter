@@ -5,6 +5,11 @@ class HousesControllerTest < ActionDispatch::IntegrationTest
 
   setup do
     @house = houses(:one)
+    @house_photo = fixture_file_upload(Rails.root.join('test', 'fixtures', 'files', 'house.png'),'image/png')
+
+    @house.image_path.attach(@house_photo)
+    @house.save
+
     sign_in users(:one)
   end
 
@@ -20,7 +25,7 @@ class HousesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create house" do
     assert_difference('House.count') do
-      post houses_url, params: { house: { area: @house.area, company_id: @house.company_id, email: @house.email, floors: @house.floors, has_basement: @house.has_basement, image_path: @house.image_path, location: @house.location, owner: @house.owner, phone: @house.phone, price: @house.price, style: @house.style, user_id: @house.user_id, year_built: @house.year_built } }
+      post houses_url, params: { house: { area: @house.area, company_id: @house.company_id, email: @house.email, floors: @house.floors, has_basement: @house.has_basement, image_path: @house_photo, location: @house.location, owner: @house.owner, phone: @house.phone, price: @house.price, style: @house.style, user_id: @house.user_id, year_built: @house.year_built } }
     end
 
     assert_redirected_to house_url(House.last)
@@ -37,7 +42,7 @@ class HousesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update house" do
-    patch house_url(@house), params: { house: { area: @house.area, company_id: @house.company_id, email: @house.email, floors: @house.floors, has_basement: @house.has_basement, image_path: @house.image_path, location: @house.location, owner: @house.owner, phone: @house.phone, price: @house.price, style: @house.style, user_id: @house.user_id, year_built: @house.year_built } }
+    patch house_url(@house), params: { house: { area: @house.area, company_id: @house.company_id, email: @house.email, floors: @house.floors, has_basement: @house.has_basement, image_path: @house_photo, location: @house.location, owner: @house.owner, phone: @house.phone, price: @house.price, style: @house.style, user_id: @house.user_id, year_built: @house.year_built } }
     assert_redirected_to house_url(@house)
   end
 

@@ -2,10 +2,5 @@
 
 one:
   inquiry: one
-  realtor_id: 
-  message: MyString
-
-two:
-  inquiry: two
-  realtor_id: 
+  realtor_id: one
   message: MyString

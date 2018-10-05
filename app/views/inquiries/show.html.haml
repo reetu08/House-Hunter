@@ -13,8 +13,9 @@
   %b Message:
   = @inquiry.message
 
-= link_to 'Edit', edit_inquiry_path(@inquiry), :class => 'button-xs'
 = link_to 'Back', inquiries_path, :class => 'button-xs'
+= link_to 'Edit', edit_inquiry_path(@inquiry), :class => 'button-xs'
+= link_to 'Delete', inquiry_path(@inquiry), { :data => "Are you sure?", :method => :delete, :class => 'button-xs' }
 
 - if current_user.realtor? or current_user.admin?
   - if @inquiry.inquiry_reply.nil?
