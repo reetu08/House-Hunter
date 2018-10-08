@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hey <%= @inquiry_reply.inquiry.user.name %>! You just received a reply to an inquiry!</h1>
+    <p>
+      Your inquiry for House <% @inquiry_reply.inquiry.house_id %> got a response from the realtor. They wrote:
+    </p>
+    <hr/>
+    <p>
+      <%= @inquiry_reply.message %>
+    </p>
+    <p>Click <%= link_to 'here', inquiry_url(@inquiry_reply.inquiry.id) %> to see it in context.</p>
+  </body>
+</html>

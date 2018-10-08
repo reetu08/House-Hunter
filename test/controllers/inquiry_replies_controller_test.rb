@@ -6,7 +6,8 @@ class InquiryRepliesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @inquiry_reply = inquiry_replies(:one)
     @inquiry = inquiries(:one)
-    sign_in users(:three)
+    @user = users(:three)
+    sign_in @user
   end
 
   test "should get new" do
@@ -16,10 +17,12 @@ class InquiryRepliesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create inquiry_reply" do
     assert_difference('InquiryReply.count') do
-      post inquiry_replies_url, params: { inquiry_reply: { :inquiry_id => 1, :user_id => 1, :message => 'message' } }
+      post inquiry_replies_url, params: { inquiry_reply: { :inquiry_id => @inquiry.id, :realtor_id => @user.id, :message => 'message' } }
     end
 
-    assert_redirected_to inquiries_path
+    reply = InquiryReply.last
+
+    assert_redirected_to inquiry_reply_url(reply)
   end
 
   test "should show inquiry_reply" do
@@ -34,7 +37,7 @@ class InquiryRepliesControllerTest < ActionDispatch::IntegrationTest
 
   test "should update inquiry_reply" do
     patch inquiry_reply_url(@inquiry_reply), params: { inquiry_reply: { :message => 'message' } }
-    assert_response :success
+    assert_redirected_to inquiry_reply_url(@inquiry_reply)
   end
 
   test "should destroy inquiry_reply" do

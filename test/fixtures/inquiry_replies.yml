@@ -2,5 +2,5 @@
 
 one:
   inquiry: one
-  realtor_id: one
+  user: three
   message: MyString

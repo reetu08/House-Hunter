@@ -38,6 +38,7 @@ class InquiryRepliesController < ApplicationController
 
     respond_to do |format|
       if @inquiry_reply.save
+        ReplyMailer.with(inquiry_reply: @inquiry_reply).reply_email.deliver_later
         format.html { redirect_to @inquiry_reply, notice: 'Inquiry reply was successfully created.' }
         format.json { render :show, status: :created, location: @inquiry_reply }
       else
