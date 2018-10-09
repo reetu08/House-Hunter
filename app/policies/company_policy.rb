@@ -30,4 +30,8 @@ class CompanyPolicy < ApplicationPolicy
     @current_user.admin? or @current_user.realtor?
   end
 
+  def join?
+    @current_user.admin? or @current_user.realtor?
+  end
+
 end

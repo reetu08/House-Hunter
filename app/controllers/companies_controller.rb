@@ -72,6 +72,18 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def join
+    @company = Company.find params[:id]
+    authorize @company
+    r = Realtor.new
+    if !r.is_owner
+      r.company_id = @company.id
+      r.user_id = current_user.id
+      r.save
+    end
+    redirect_to @company
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_company

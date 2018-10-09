@@ -22,10 +22,11 @@
         %td= company.addr
         %td= company.size
         %td= company.found_year
-        %td= "$#{company.revenue} million per year"
+        %td= "#{company.revenue} per year"
         %td= company.synopsis
         %td= link_to 'Show', company
         %td= link_to 'Edit', edit_company_path(company)
+        %td= link_to 'Join', join_company_path(company)
         %td= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br

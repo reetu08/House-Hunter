@@ -53,6 +53,12 @@
     <%= f.submit 'Update', :class => 'button right' %>
   <% end %>
 </div>
+</div>
+<div class="authform">
+<% if resource.admin? or resource.realtor? %>
+  <%= button_to "Join or Add New Company", companies_path(resource_name), :method => :get, :class => 'button left' %>
+<% end %>
+</div>
 <div class="authform">
 <h3>Cancel Account</h3>
 <p>Unhappy? We'll be sad to see you go.</p>

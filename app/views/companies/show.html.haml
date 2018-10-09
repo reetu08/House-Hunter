@@ -17,14 +17,14 @@
   = @company.found_year
 %p
   %b Revenue:
-  = "$#{@company.revenue} million per year"
+  = "#{@company.revenue} per year"
 %p
   %b Synopsis:
   = @company.synopsis
 
-%p
-  %b Owner
-  = @company.owned_by
+-#%p
+-#  %b Owner
+-#  = @company.owned_by
 
 = link_to 'Edit', edit_company_path(@company)
 \|

@@ -17,13 +17,13 @@
     = f.text_field :addr
   .field
     = f.label :size
-    = f.text_field :size
+    = f.select(:size, Company.sizes.keys)
   .field
     = f.label :found_year
     = f.text_field :found_year
   .field
-    = f.label :revenue,'Revenue (million dollars per year)'
-    = f.text_field :revenue
+    = f.label :revenue
+    = f.select(:revenue, Company.revenues.keys)
   .field
     = f.label :synopsis
     = f.text_field :synopsis
