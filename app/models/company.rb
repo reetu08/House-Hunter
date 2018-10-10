@@ -13,7 +13,6 @@ class Company < ApplicationRecord
                      with: /\A[a-zA-Z ]+, [A-Z]{1,4}\Z/,
                      message: 'Headquater\'s location required, eg. Raleigh, NC'
                    }
-  validates :size, numericality: { only_integer: true, greater_than: 0 }
   validates :found_year, presence: true,
                          numericality: {
                            only_integer: true,
