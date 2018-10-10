@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-</head>
-<body>
-<h1>Welcome to House Hunters, <%= @user.name %></h1>
-<p>
-  The admin has created an account for you. However, you need to reset your password to begin.
-</p>
-<p>
-  To do so, just follow this link: <%= link_to 'Edit Password', edit_password_url(@user, :reset_password_token => @token) %></p>
-</p>
-<p>Thanks for joining and have a great day!</p>
-</body>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to House Hunters, <%= @user.name %></h1>
+    <p>
+      The admin has created an account for you. However, you need to reset your password to begin.
+    </p>
+    <p>
+      To do so, just follow this link: <%= link_to 'Edit Password', edit_password_url(@user, :reset_password_token => @token) %></p>
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
 </html>

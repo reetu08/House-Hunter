@@ -1,2 +1,11 @@
-<h3>Welcome</h3>
-<p><%= link_to 'Users:', users_path %> <%= User.count %> registered</p>
+<div class="row">
+  <%= image_tag("LOGO.jpg") %>
+</div>
+<div class="row">
+  <div class="column-in-center">
+    <% if !user_signed_in? %>
+      <a><%= link_to 'Sign in', new_user_session_path, class: 'button-xs' %></a>
+      <a><%= link_to 'Sign up', new_user_registration_path, class: 'button-xs' %></a>
+    <% end %>
+  </div>
+</div>

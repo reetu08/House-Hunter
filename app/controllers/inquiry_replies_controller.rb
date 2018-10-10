@@ -1,6 +1,6 @@
 class InquiryRepliesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_inquiry_reply, only: [:show, :destroy]
+  before_action :set_inquiry_reply, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized
 
   # GET /inquiry_replies
@@ -25,11 +25,35 @@ class InquiryRepliesController < ApplicationController
     authorize @inquiry_reply
   end
 
+  # GET /inquiry_replies/new
+  def edit
+    authorize @inquiry_reply
+  end
+
   # POST /inquiry_replies
   # POST /inquiry_replies.json
   def create
     @inquiry_reply = InquiryReply.new(inquiry_reply_params)
     authorize @inquiry_reply
+
+    respond_to do |format|
+      if @inquiry_reply.save
+        ReplyMailer.with(inquiry_reply: @inquiry_reply).reply_email.deliver_later
+        format.html { redirect_to @inquiry_reply, notice: 'Inquiry reply was successfully created.' }
+        format.json { render :show, status: :created, location: @inquiry_reply }
+      else
+        format.html { render :new }
+        format.json { render json: @inquiry_reply.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /inquiry_replies
+  # PUT /inquiry_replies.json
+  def update
+    authorize @inquiry_reply
+
+    @inquiry_reply.message = params[:inquiry_reply][:message]
 
     respond_to do |format|
       if @inquiry_reply.save

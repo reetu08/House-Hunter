@@ -27,6 +27,14 @@ class InquiryReplyPolicy < ApplicationPolicy
     @current_user.admin? or can_send_reply?
   end
 
+  def update?
+    @current_user.admin? or can_send_reply?
+  end
+
+  def destroy?
+    @current_user.admin? or can_send_reply?
+  end
+
   private
 
   def can_send_reply?

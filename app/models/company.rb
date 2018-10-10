@@ -2,6 +2,7 @@
 
 class Company < ApplicationRecord
   has_many :realtors
+  has_many :houses
 
   validates :name, presence: true
   validates :website, presence: true,
@@ -36,4 +37,5 @@ class Company < ApplicationRecord
     #   owning_user.name
     # end
   end
+
 end

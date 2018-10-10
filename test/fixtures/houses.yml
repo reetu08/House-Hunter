@@ -13,7 +13,6 @@ one:
   phone: MyString
   email: MyString
   user: one
-  image_path: MyString
 
 two:
   company: two
@@ -28,4 +27,3 @@ two:
   phone: MyString
   email: MyString
   user: two
-  image_path: MyString

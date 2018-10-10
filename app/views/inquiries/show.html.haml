@@ -13,11 +13,14 @@
   %b Message:
   = @inquiry.message
 
-= link_to 'Edit', edit_inquiry_path(@inquiry)
-\|
-= link_to 'Back', inquiries_path
+= link_to 'Back', inquiries_path, :class => 'button-xs'
+= link_to 'Edit', edit_inquiry_path(@inquiry), :class => 'button-xs'
+= link_to 'Delete', inquiry_path(@inquiry), { :data => "Are you sure?", :method => :delete, :class => 'button-xs' }
 
 - if current_user.realtor? or current_user.admin?
-  \|
-  = link_to 'Reply', new_inquiry_reply_path(:inquiry_id => @inquiry.id)
+  - if @inquiry.inquiry_reply.nil?
+    = link_to 'Reply', new_inquiry_reply_path(:inquiry_id => @inquiry.id), :class => 'button-xs'
+  - else
+    = link_to 'View Reply', inquiry_reply_path(@inquiry.inquiry_reply.id), :class => 'button-xs'
+
 

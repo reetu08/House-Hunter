@@ -20,7 +20,7 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create company" do
     assert_difference('Company.count') do
-      post companies_url, params: { company: { addr: @company.addr, found_year: @company.found_year, name: @company.name, revenue: @company.revenue, synopsis: @company.synopsis, website: @company.website } }
+      post companies_url, params: { company: { addr: @company.addr, size: @company.size, found_year: @company.found_year, name: @company.name, revenue: @company.revenue, synopsis: @company.synopsis, website: @company.website } }
     end
 
     assert_redirected_to company_url(Company.last)

@@ -2,16 +2,16 @@
 
 one:
   name: First Company
-  website: 
-  addr: 1220 Twin Branches Way
+  website: www.something.com
+  addr: Apex, NC
   found_year: 1995
   revenue: 900
   synopsis: MyString
 
 two:
   name: Second Company
-  website:
-  addr: 1222 Twin Branches Way
+  website: www.somethingelse.com
+  addr: Raleigh, NC
   found_year: 1999
   revenue: 90000
   synopsis: MyString
