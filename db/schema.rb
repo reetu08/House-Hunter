@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_01_000139) do
+ActiveRecord::Schema.define(version: 2018_10_10_215238) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -100,9 +100,8 @@ ActiveRecord::Schema.define(version: 2018_10_01_000139) do
     t.boolean "is_owner", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id", "is_owner"], name: "index_realtors_on_company_id_and_is_owner", unique: true
     t.index ["company_id"], name: "index_realtors_on_company_id"
-    t.index ["user_id", "company_id"], name: "index_realtors_on_user_id_and_company_id", unique: true
-    t.index ["user_id"], name: "index_realtors_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
