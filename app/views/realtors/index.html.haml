@@ -1,0 +1,22 @@
+%h1 Listing realtors
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Email
+      %th Phone
+      %th Company
+
+  %tbody
+    - @realtors.each do |realtor|
+      %tr
+        %td= realtor.user.name
+        %td= realtor.user.email
+        %td= realtor.user.phone
+        %td= realtor.company.name
+        %td= link_to 'Show', realtor
+
+%br
+
+=# link_to 'New Realtor', new_realtor_path

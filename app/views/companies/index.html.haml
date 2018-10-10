@@ -10,6 +10,7 @@
       %th Found Year
       %th Revenue
       %th Synopsis
+      %th Realtors
       %th
       %th
       %th
@@ -24,9 +25,11 @@
         %td= company.found_year
         %td= "#{company.revenue} per year"
         %td= company.synopsis
+        %td= company.owned_by
         %td= link_to 'Show', company
         %td= link_to 'Edit', edit_company_path(company)
         %td= link_to 'Join', join_company_path(company)
+        %td= link_to 'Leave', leave_company_path(company)
         %td= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br

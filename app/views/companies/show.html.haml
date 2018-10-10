@@ -22,9 +22,11 @@
   %b Synopsis:
   = @company.synopsis
 
--#%p
--#  %b Owner
--#  = @company.owned_by
+%p
+  %b Realtors:
+  = @company.owned_by
+  //= @company.realtors.each.select {|realtor| realtor.company_id == @company.id}.size
+  //= @company.realtors.each.select {|realtor| realtor.company_id == @company.id}[0].user.name
 
 = link_to 'Edit', edit_company_path(@company)
 \|

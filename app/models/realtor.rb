@@ -1,5 +1,5 @@
 class Realtor < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, :dependent => :destroy
   belongs_to :company
   has_many :houses, :through => :company
 

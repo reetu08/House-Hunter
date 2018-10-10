@@ -34,4 +34,8 @@ class CompanyPolicy < ApplicationPolicy
     @current_user.admin? or @current_user.realtor?
   end
 
+  def leave?
+    @current_user.admin? or @current_user.realtor?
+  end
+
 end

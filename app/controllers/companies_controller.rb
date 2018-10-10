@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class CompaniesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :set_company, only: %i[show edit update destroy]
   after_action :verify_authorized
 
   # GET /companies
@@ -81,6 +83,19 @@ class CompaniesController < ApplicationController
       r.user_id = current_user.id
       r.save
     end
+    redirect_to realtors_path
+  end
+
+  def leave
+    @company = Company.find params[:id]
+    authorize @company
+    r = Realtor.find_by_user_id current_user.id
+    #r = Realtor.find_by_company_id @company.id
+    if r.company_id == @company.id
+       @company.update_attribute(:realtor_ids, nil)
+      #r.save
+    end
+    #current_user.realtors.company_id = nil
     redirect_to @company
   end
 

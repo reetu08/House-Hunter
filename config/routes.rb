@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :companies do
     member do
       get 'join'
+      get 'leave'
     end
   end
 

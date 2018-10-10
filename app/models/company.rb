@@ -26,16 +26,25 @@ class Company < ApplicationRecord
   validates :synopsis, presence: true
 
   def owned_by
-    owning_realtor = realtors.each.select { |realtor| realtor.is_owner == true }
-    return 'No Owner Yet' if realtors.empty?
-    owning_realtor = owning_realtor[0]
-    owning_user = User.find_by_id owning_realtor.user_id
-    owning_user.name
-
-    # if realtors.size != 0
-    #   owning_user = User.find_by_id realtors.any?
-    #   owning_user.name
-    # end
+    owning_realtor = realtors.each.select { |realtor| realtor.company_id == id }
+    index = 0
+    names = []
+    owning_realtor.length.times do
+      names << owning_realtor[index].user.name
+      index += 1
+    end
+    return names.join(', ')
   end
+
+      # owning_realtor = realtors.each.select { |realtor| realtor.is_owner }
+      #
+      # if owning_realtor.empty?
+      #   #return 'No Owner Yet'
+      #   return owning_realtor.size
+      # else
+      #   owning_realtor = owning_realtor[0]
+      #   owning_user = User.find_by_id owning_realtor.user_id
+      #   owning_user.name
+      # end
 
 end
