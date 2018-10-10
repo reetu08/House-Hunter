@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 2018_10_10_215238) do
     t.datetime "updated_at", null: false
     t.index ["company_id", "is_owner"], name: "index_realtors_on_company_id_and_is_owner", unique: true
     t.index ["company_id"], name: "index_realtors_on_company_id"
+    t.index ["user_id"], name: "index_realtors_on_user_id", unique: true
   end
 
   create_table "roles", force: :cascade do |t|
