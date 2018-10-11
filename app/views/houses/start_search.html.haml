@@ -1,0 +1,20 @@
+.authform
+  %h2 Search for Houses
+  = form_tag('/search', method: 'post') do
+    .form-group
+      = label_tag 'min_price', 'Min Price'
+      = text_field_tag 'min_price', nil, :class => 'form-control'
+      .form-group
+      = label_tag 'max_price', 'Max Price'
+      = text_field_tag 'max_price', nil, :class => 'form-control'
+    .form-group
+      = label_tag 'min_square_footage', 'Min Square Footage'
+      = text_field_tag 'min_square_footage', nil, :class => 'form-control'
+    .form-group
+      = label_tag 'max_square_footage', 'Max Square Footage'
+      = text_field_tag 'max_square_footage', nil, :class => 'form-control'
+    .form-group
+      = label_tag 'floors', 'Floors'
+      = text_field_tag 'floors', nil, :class => 'form-control'
+    .actions
+      = submit_tag 'Search'

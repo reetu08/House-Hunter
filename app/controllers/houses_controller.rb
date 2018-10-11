@@ -1,10 +1,11 @@
 class HousesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_house, only: [:show, :edit, :update, :destroy]
 
   # GET /houses
   # GET /houses.json
   def index
-    @houses = House.all
+    @houses = HouseQuery.call(params)
     authorize @houses
   end
 
@@ -12,6 +13,36 @@ class HousesController < ApplicationController
   # GET /houses/1.json
   def show
     authorize @house
+  end
+
+  def start_search
+    @search = { }
+  end
+
+  def search
+    query_params = { }
+
+    if !params[:min_price].blank?
+      query_params[:min_price] = params[:min_price];
+    end
+
+    if !params[:max_price].blank?
+      query_params[:max_price] = params[:max_price];
+    end
+
+    if !params[:min_square_footage].blank?
+      query_params[:min_square_footage] = params[:min_square_footage];
+    end
+
+    if !params[:max_square_footage].blank?
+      query_params[:max_square_footage] = params[:max_square_footage];
+    end
+
+    if !params[:floors].blank?
+      query_params[:floors] = params[:floors];
+    end
+
+    redirect_to houses_path(query_params)
   end
 
   # GET /houses/new
