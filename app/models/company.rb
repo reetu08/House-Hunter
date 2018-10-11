@@ -1,6 +1,6 @@
 class Company < ApplicationRecord
-  has_many :realtors
-  has_many :houses
+  has_many :realtors, :dependent => :delete_all
+  has_many :houses, :dependent => :delete_all
 
   validates :name, presence: true
   validates :website, presence: true,

@@ -43,3 +43,7 @@
   = link_to 'New House', new_house_path, :class => 'button-xs'
 = link_to 'Search', search_path, :class => 'button-xs'
 
+- if !request.query_string.blank?
+  = link_to 'Show all', houses_path, :class => 'button-xs'
+
+
