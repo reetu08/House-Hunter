@@ -6,7 +6,7 @@ class House < ApplicationRecord
   validates :location, presence: true
   validates :area, presence: true, numericality: true
   validates :year_built, presence: true, numericality: {only_integer:  true}
-  validates :style, presence: true, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
+  validates :style, presence: true, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters (no spaces)" }
   validates :price, presence: true, numericality: true
   validates :floors, presence: true, numericality: {only_integer:  true}
   validates :has_basement, inclusion: {in: [true, false]}

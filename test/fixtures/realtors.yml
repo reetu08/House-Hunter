@@ -8,4 +8,4 @@ one:
 two:
   user: two
   company: two
-  is_owner: false
+  is_owner: true

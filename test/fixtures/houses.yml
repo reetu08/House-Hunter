@@ -2,28 +2,28 @@
 
 one:
   company: one
-  location: MyString
-  area: MyString
+  location: My address
+  area: 100
   year_built: 1
   style: MyString
   price: 1
   floors: 1
-  has_basement: 
+  has_basement: true
   owner: MyString
-  phone: MyString
-  email: MyString
+  phone: 9193214569
+  email: email3@email.com
   user: one
 
 two:
   company: two
-  location: MyString
-  area: MyString
+  location: My address
+  area: 200
   year_built: 1
   style: MyString
   price: 1
   floors: 1
-  has_basement: 
+  has_basement: false
   owner: MyString
-  phone: MyString
-  email: MyString
+  phone: 9193214567
+  email: email2@email.com
   user: two

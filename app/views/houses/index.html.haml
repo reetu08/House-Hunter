@@ -3,8 +3,6 @@
 %table
   %thead
     %tr
-      %th Company
-      %th User
       %th Location
       %th Area
       %th Year built
@@ -41,4 +39,11 @@
 
 %br
 
-= link_to 'New House', new_house_path, :class => 'button-xs'
+- if @current_user.admin? or @current_user.realtor?
+  = link_to 'New House', new_house_path, :class => 'button-xs'
+= link_to 'Search', search_path, :class => 'button-xs'
+
+- if !request.query_string.blank?
+  = link_to 'Show all', houses_path, :class => 'button-xs'
+
+

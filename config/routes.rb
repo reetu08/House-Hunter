@@ -16,4 +16,7 @@ Rails.application.routes.draw do
   resources :users
   resources :realtors
   post '/users/manual', to: 'users#manual_create'
+
+  get '/search', to: 'houses#start_search'
+  post '/search', to: 'houses#search'
 end
