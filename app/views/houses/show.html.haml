@@ -1,5 +1,14 @@
 %p#notice= notice
 
+
+.div.right
+  - if current_user.realtor? and current_user.is_realtor_for_house? @house.id
+    %p
+      %b Potential Buyers:
+      = @house.potential_buyers.all.collect {|u| User.find_by_id(u.user_id).name}.join(', ')
+
+
+
 %p
   %b Company:
   = @house.company.name
@@ -46,6 +55,11 @@
 
 - if current_user.realtor? and current_user.is_realtor_for_house? @house.id
   = link_to 'See Inquiries', inquiries_path(:house_id => @house.id), :class => 'button-xs'
+- elsif current_user.househunter? and @house.potential_buyers.all.select{|u| u.user_id == current_user.id}.size == 0
+  = link_to 'Add me to potential buyers', new_potential_buyer_path({ :user_id => current_user.id, :house_id => @house.id }), :class => 'button-xs'
+- elsif current_user.househunter? and @house.potential_buyers.all.select{|u| u.user_id == current_user.id}.size == 1
+  = link_to 'Remove me from potential buyers', potential_buyers_path(current_user.id, @house.id), { :data => "Are you sure?", :method => :delete, :class => 'button-xs' }
+
 
 
 

@@ -1,0 +1,15 @@
+= form_for @potential_buyer do |f|
+  - if @potential_buyer.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@potential_buyer.errors.count, "error")} prohibited this potential_buyer from being saved:"
+      %ul
+        - @potential_buyer.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.hidden_field :user_id, value: @potential_buyer.user_id
+  .field
+    = f.hidden_field :house_id, value: @potential_buyer.house_id
+
+  .actions
+    = f.submit 'Save'
