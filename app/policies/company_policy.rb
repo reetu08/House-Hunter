@@ -23,19 +23,21 @@ class CompanyPolicy < ApplicationPolicy
   end
 
   def new?
-    @current_user.admin? or @current_user.realtor?
+    re = Realtor.find_by_user_id @current_user.id
+    @current_user.admin? or (@current_user.realtor? and  re.nil?)
   end
 
   def create?
-    @current_user.admin? or @current_user.realtor?
+    re = Realtor.find_by_user_id @current_user.id
+    @current_user.admin? or (@current_user.realtor? and re.nil?)
   end
 
   def join?
-    @current_user.admin? or @current_user.realtor?
+    re = Realtor.find_by_user_id @current_user.id
+    @current_user.admin? or (@current_user.realtor? and re.nil?)
   end
 
   def leave?
     @current_user.admin? or @current_user.realtor?
   end
-
 end

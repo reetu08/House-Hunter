@@ -27,10 +27,15 @@
         %td= company.synopsis
         %td= company.owned_by
         %td= link_to 'Show', company
-        %td= link_to 'Edit', edit_company_path(company)
-        %td= link_to 'Join', join_company_path(company)
-        %td= link_to 'Leave', leave_company_path(company)
-        %td= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' }
+        - r = Realtor.for_user_company(current_user.id, company.id).first
+        - if !r.nil? && r.is_owner?
+          %td= link_to 'Edit', edit_compgiany_path(company)
+        - if Realtor.find_by_user_id(current_user.id).nil? && current_user.realtor?
+          %td= link_to 'Join', join_company_path(company)
+        - if !r.nil? && !r.is_owner?
+          %td= link_to 'Leave', leave_company_path(company)
+        - if current_user.admin?
+          %td= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 

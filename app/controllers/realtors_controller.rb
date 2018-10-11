@@ -10,6 +10,7 @@ class RealtorsController < ApplicationController
   # GET /realtors/1
   # GET /realtors/1.json
   def show
+    authorize @realtor
   end
 
   # GET /realtors/new

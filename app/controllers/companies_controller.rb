@@ -37,6 +37,13 @@ class CompaniesController < ApplicationController
 
     respond_to do |format|
       if @company.save
+        if current_user.realtor?
+          r = Realtor.new
+          r.user_id = current_user.id
+          r.company_id = @company.id
+          r.is_owner = true
+          r.save
+        end
         format.html { redirect_to @company, notice: 'Company was successfully created.' }
         format.json { render :show, status: :created, location: @company }
       else
@@ -77,25 +84,20 @@ class CompaniesController < ApplicationController
   def join
     @company = Company.find params[:id]
     authorize @company
-    r = Realtor.new
-    if !r.is_owner
-      r.company_id = @company.id
-      r.user_id = current_user.id
-      r.save
-    end
-    redirect_to realtors_path
-  end
+      r = Realtor.new
+      if !r.is_owner
+        r.company_id = @company.id
+        r.user_id = current_user.id
+        r.save
+      end
+    redirect_to @company
+  end 
 
   def leave
     @company = Company.find params[:id]
     authorize @company
-    r = Realtor.find_by_user_id current_user.id
-    #r = Realtor.find_by_company_id @company.id
-    if r.company_id == @company.id
-       @company.update_attribute(:realtor_ids, nil)
-      #r.save
-    end
-    #current_user.realtors.company_id = nil
+    r = Realtor.for_user_company(current_user.id, @company.id).first
+    r.destroy
     redirect_to @company
   end
 
