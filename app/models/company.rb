@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Company < ApplicationRecord
   has_many :realtors
   has_many :houses
