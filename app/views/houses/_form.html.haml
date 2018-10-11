@@ -7,17 +7,17 @@
           %li= message
 
   .field
-    = f.label :company_id
     - if @current_user.admin?
+      = f.label :company_id
       = f.select :company_id, Company.all.collect{|c| [c.name, c.id]}
     - elsif @current_user.realtor?
       = f.hidden_field :company_id, value: @current_user.realtor.company_id
   .field
-    = f.label :user_id
     - if @current_user.admin?
+      = f.label :user_id
       = f.select :user_id, User.all.select{|u| u.admin?||u.realtor?}.collect {|u| [u.name, u.id]}
     - elsif @current_user.realtor?
-      = f.hidden_field :user_id, value: @current_user.realtor_id
+      = f.hidden_field :user_id, value: @current_user.id
   .field
     = f.label :location
     = f.text_field :location
