@@ -14,6 +14,10 @@
           <option name="url" value="https://github.ncsu.edu/csc517-f14/cookbook.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/VibhavSrivaths/ProjectHouseHunt.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="$USER_HOME$/RubymineProjects" />
