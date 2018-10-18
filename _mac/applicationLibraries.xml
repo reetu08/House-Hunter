@@ -683,18 +683,18 @@
         <option name="version" value="3" />
       </properties>
       <CLASSES>
-        <root url="file://$USER_HOME$/.gem/ruby/2.3.0/gems/bundler-1.16.6/exe" />
-        <root url="file://$USER_HOME$/.gem/ruby/2.3.0/gems/bundler-1.16.6/lib" />
-        <root url="file://$USER_HOME$/.gem/ruby/2.3.0/gems/bundler-1.16.6/man" />
+        <root url="file:///Library/Ruby/Gems/2.3.0/gems/bundler-1.16.6/exe" />
+        <root url="file:///Library/Ruby/Gems/2.3.0/gems/bundler-1.16.6/lib" />
+        <root url="file:///Library/Ruby/Gems/2.3.0/gems/bundler-1.16.6/man" />
       </CLASSES>
       <SOURCES>
-        <root url="file://$USER_HOME$/.gem/ruby/2.3.0/gems/bundler-1.16.6/exe" />
-        <root url="file://$USER_HOME$/.gem/ruby/2.3.0/gems/bundler-1.16.6/lib" />
-        <root url="file://$USER_HOME$/.gem/ruby/2.3.0/gems/bundler-1.16.6/man" />
+        <root url="file:///Library/Ruby/Gems/2.3.0/gems/bundler-1.16.6/exe" />
+        <root url="file:///Library/Ruby/Gems/2.3.0/gems/bundler-1.16.6/lib" />
+        <root url="file:///Library/Ruby/Gems/2.3.0/gems/bundler-1.16.6/man" />
       </SOURCES>
       <excluded>
-        <root url="file://$USER_HOME$/.gem/ruby/2.3.0/gems/bundler-1.16.6/exe" />
-        <root url="file://$USER_HOME$/.gem/ruby/2.3.0/gems/bundler-1.16.6/man" />
+        <root url="file:///Library/Ruby/Gems/2.3.0/gems/bundler-1.16.6/exe" />
+        <root url="file:///Library/Ruby/Gems/2.3.0/gems/bundler-1.16.6/man" />
       </excluded>
     </library>
     <library name="capistrano (v3.10.1, ruby-2.3.7-p456) [gem]" type="rubylib">
@@ -3008,7 +3008,6 @@
         <option name="version" value="3" />
       </properties>
       <CLASSES>
-        <root url="file://$APPLICATION_CONFIG_DIR$/rubystubs/rubystubs23/nokogiri/1.7.0.1" />
         <root url="file:///Library/Ruby/Gems/2.3.0/gems/nokogiri-1.7.0.1/bin" />
         <root url="file:///Library/Ruby/Gems/2.3.0/gems/nokogiri-1.7.0.1/ext" />
         <root url="file:///Library/Ruby/Gems/2.3.0/gems/nokogiri-1.7.0.1/lib" />
@@ -3018,7 +3017,6 @@
         <root url="file:///Library/Ruby/Gems/2.3.0/gems/nokogiri-1.7.0.1/suppressions" />
       </CLASSES>
       <SOURCES>
-        <root url="file://$APPLICATION_CONFIG_DIR$/rubystubs/rubystubs23/nokogiri/1.7.0.1" />
         <root url="file:///Library/Ruby/Gems/2.3.0/gems/nokogiri-1.7.0.1/bin" />
         <root url="file:///Library/Ruby/Gems/2.3.0/gems/nokogiri-1.7.0.1/ext" />
         <root url="file:///Library/Ruby/Gems/2.3.0/gems/nokogiri-1.7.0.1/lib" />
